@@ -23,7 +23,7 @@ public class BookTestSuite {
                 numberOfBooksPublicatedAfter2007++;
             }
         }
-        assertEquals(3, numberOfBooksPublicatedAfter2007);
+        assertEquals(4, numberOfBooksPublicatedAfter2007);
     }
     @Test
     void testGetListUsingIntStream() {
@@ -38,7 +38,7 @@ public class BookTestSuite {
                 .filter(n -> books.get(n).getYearOfPublication() > 2007)             // [2]
                 .map(n -> 1)                                                         // [3]
                 .sum();                                                              // [4]
-        assertEquals(3, numberOfBooksPublicatedAfter2007);// [5]
+        assertEquals(4, numberOfBooksPublicatedAfter2007);// [5]
     }@Test
     void testGetListUsingIntStream2() {
         //Given
@@ -51,7 +51,7 @@ public class BookTestSuite {
         long numberOfBooksPublicatedAfter2007 = IntStream.range(0, books.size())
                 .filter(n -> books.get(n).getYearOfPublication() > 2007)
                 .count();
-        assertEquals(3, numberOfBooksPublicatedAfter2007);
+        assertEquals(4, numberOfBooksPublicatedAfter2007);
     }
 
 

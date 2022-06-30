@@ -6,4 +6,6 @@ include 'kodilla-good-patterns'
 include 'kodilla-good-patterns'
 include 'Foof2Door'
 include 'kodilla-good-patterns-food2door'
+include 'kodilla-spring-intro'
+include 'kodilla-spring'
 
