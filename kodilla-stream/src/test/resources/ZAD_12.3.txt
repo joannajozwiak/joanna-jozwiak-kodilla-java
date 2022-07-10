@@ -1,0 +1,80 @@
+CREATE TABLE ISSUESLISTS
+(
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100)
+    );
+
+CREATE TABLE ISSUES
+(
+    ID SERIAL PRIMARY KEY,
+    ISSUESLIST_ID BIGINT UNSIGNED NOT NULL,
+    SUMMARY VARCHAR(1000) CHARSET utf8,
+    DESCRIPTION VARCHAR (16000) CHARSET utf8,
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLISTS(ID),
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+);
+
+INSERT INTO ISSUESLISTS (NAME)
+VALUES ("ToDo");
+
+INSERT INTO ISSUESLISTS (NAME)
+VALUES ("In progress");
+
+INSERT INTO ISSUESLISTS (NAME)
+VALUES ("Done");
+
+COMMIT;
+
+SELECT * FROM ISSUESLISTS;
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (1, "Dishwashing", "Put dishes into dishwasher", 3);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (1, "Laundry", "Put clothes into wasching machine", 2);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (1, "Cleaning the floor", "Wash the floor", 4);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (1, "Plants watering", "Water plants on the windowsill ", 2);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (1, "Baking cakes", "Bake a cheescake", 1);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (2, "Make dinner", "Cook the tomato soup", 1);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (2, "Make second course", "Make a salad", 5);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (2, "Vacuuming", "Vacuum the floor", 3);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (2, "Ironing", "Iron clothes from the sofa", 5);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (2, "Cleaning bathroom", "Clean shower and WC ", 2);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (3, "Cleaning children's room", "Put toys into wardrobe", 2);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (3, "Cleaning bedrooms", "Make a bad", 2);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (3, "Cleaning kitchen", "Clean the fridge", 3);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (3, "Cleaning windows", "Wash the windows", 4);
+
+INSERT INTO ISSUES (issueslist_id, summary, description, user_id_assignedto)
+VALUES (3, "Make breakfast", "Make breakfast for everyone.", 5);
+
+COMMIT;
+
+SELECT * FROM ISSUESLISTS;
+
+SELECT * FROM ISSUES;
