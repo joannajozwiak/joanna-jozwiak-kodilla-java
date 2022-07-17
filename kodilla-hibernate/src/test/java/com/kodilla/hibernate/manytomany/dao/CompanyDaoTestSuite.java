@@ -6,12 +6,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -57,5 +63,49 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
            //do nothing
         }
+    }
+    @Test
+    void testEmployeeWithLastname() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+
+        //When
+        List<Employee> SmithEmployees = employeeDao.retrieveEmployeeNamed("Smith");
+
+        //Then
+        assertEquals(1, SmithEmployees.size());
+
+        //CleanUp
+        employeeDao.deleteById(SmithEmployees.get(0).getId());
+        }
+
+    @Test
+    void testCompanyNameBegin() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+        Company softHouse = new Company("Soft House");
+
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        companyDao.save(softHouse);
+
+
+        //When
+        List<Company> companies = companyDao.retrieveCompanyWhichNameBegin("Sof");
+
+        //Then
+        assertEquals(2, companies.size());
+
+        //CleanUp
+        companyDao.deleteById(companies.get(0).getId());
     }
 }
